@@ -23,7 +23,7 @@ public abstract class ViolationsParserTest {
         }
 
         FullBuildModel model = new FullBuildModel();
-        parser.parse(model, xmlFile.getParentFile(), xmlFile.getName(), null);
+        parser.parse(model, xmlFile.getParentFile(), xmlFile.getName(), null, null);
         model.cleanup();
         return model;
     }

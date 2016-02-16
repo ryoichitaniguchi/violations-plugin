@@ -23,6 +23,7 @@ public abstract class AbstractTypeParser
     extends AbstractParser implements ViolationsParser {
     private FullBuildModel model;
     private File           projectPath;
+    private Integer        severityThreshold;
     private String[]       sourcePaths;
 
     /**
@@ -38,6 +39,7 @@ public abstract class AbstractTypeParser
         FullBuildModel model,
         File           projectPath,
         String         fileName,
+        Integer        severityThreshold,
         String[]       sourcePaths)
         throws IOException {
 
@@ -49,11 +51,11 @@ public abstract class AbstractTypeParser
             factory.setNamespaceAware(true);
             XmlPullParser parser = factory.newPullParser();
             parser.setInput(in);
-
             setProjectPath(projectPath);
             setModel(model);
             setParser(parser);
             setSourcePaths(sourcePaths);
+            setSeverityThreshold(severityThreshold);
             execute();
             success = true;
         } catch (IOException ex) {
@@ -82,20 +84,18 @@ public abstract class AbstractTypeParser
     }
 
     /**
-     * Set the project path.
-     * This is used to get a relative name for files.
-     * @param projectPath the project path.
+     * Set the severityThreshold.
+     * @param severityThreshold threshold level
      */
-    public void setProjectPath(File projectPath) {
-        this.projectPath = projectPath;
+    public void setSeverityThreshold (Integer severityThreshold) {
+        this.severityThreshold = severityThreshold;
     }
-
     /**
-     * Get the project path.
-     * @return the project path.
+     * Get the severityThreshold.
+     * @return severityThreshold.
      */
-    protected File getProjectPath() {
-        return projectPath;
+    protected Integer getSeverityThreshold() {
+        return severityThreshold;
     }
 
     /**
@@ -108,6 +108,21 @@ public abstract class AbstractTypeParser
     }
 
     /**
+     * Get the project path.
+     * @return the project path.
+     */
+    protected File getProjectPath() {
+        return projectPath;
+    }
+    /**
+     * Set the project path.
+     * @param projectPath the project path.
+     */
+
+    public void setProjectPath(File projectPath) {
+        this.projectPath = projectPath;
+    }
+   /**
      * Get the source paths.
      * @return the source paths.
      */

@@ -178,7 +178,7 @@ public class ViolationsCollector implements FileCallable<ViolationsReport> {
         }
         model.addType(c.getType());
         for (String fileName : fileNames) {
-            t.createParser().parse(model, workspace, fileName, sourcePaths);
+            t.createParser().parse(model, workspace, fileName, c.getThreshold(), sourcePaths);
         }
     }
 

@@ -40,7 +40,7 @@ public class StyleCopParser implements ViolationsParser {
     public void parse(
         FullBuildModel model,
         File projectPath,
-        String fileName, String[] sourcePaths) throws IOException {
+        String fileName, Integer threshold, String[] sourcePaths) throws IOException {
         this.model = model;
         this.reportParentFile = new File(fileName).getParentFile();
         if (this.reportParentFile==null)

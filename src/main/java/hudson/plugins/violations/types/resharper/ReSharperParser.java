@@ -85,7 +85,7 @@ public class ReSharperParser implements ViolationsParser {
     }
 
     public void parse(final FullBuildModel model, final File projectPath,
-            final String fileName, final String[] sourcePaths)
+            final String fileName, Integer threshold, final String[] sourcePaths)
             throws IOException {
         absoluteFileFinder.addSourcePath(projectPath.getAbsolutePath());
         absoluteFileFinder.addSourcePaths(sourcePaths);

@@ -24,6 +24,7 @@ public interface ViolationsParser {
         FullBuildModel model,
         File           projectPath,
         String         fileName,
+        Integer        severityThreshold,
         String[]       sourcePaths)
         throws IOException;
 }

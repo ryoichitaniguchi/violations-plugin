@@ -47,6 +47,7 @@ public abstract class ViolationsDOMParser
         FullBuildModel model,
         File           projectPath,
         String         fileName,
+        Integer        threshold,
         String[]       sourcePaths)
         throws IOException {
 

@@ -29,6 +29,7 @@ public class TypeConfig implements Cloneable, Serializable {
     private Integer fail = null;
     private boolean usePattern = false; // for maven2
 
+    private Integer threshold = null;
     private String pattern = null; // File name pattern
 
 
@@ -70,7 +71,6 @@ public class TypeConfig implements Cloneable, Serializable {
     public void setMax(int max) {
         this.max = max;
     }
-
     /**
      * Get the min (sunny).
      * @return the upper limit for sunny
@@ -78,6 +78,23 @@ public class TypeConfig implements Cloneable, Serializable {
     public int getMin() {
         return min;
     }
+
+    /**
+     * Get the threshold
+     * @return severity level threshold
+     */
+    public Integer getThreshold() {
+        return threshold;
+    }
+
+    /**
+     * Set the threshold .
+     * @param threshold severity level threshold
+     */
+    public void setThreshold(Integer threshold) {
+        this.threshold = threshold;
+    }
+
 
     /**
      * Set the min (sunny).
@@ -91,15 +108,15 @@ public class TypeConfig implements Cloneable, Serializable {
      * Get the unstable value
      * @return the unstable value
      */
-    public Integer getUnstable() {
-        if (unstable == null) { // OLD CONFIG
-            unstable = DEFAULT_UNSTABLE;
-        }
-        if (unstable == UNSTABLE_BLANK) {
-            return null;
-        }
-        return unstable;
-    }
+   public Integer getUnstable() {
+       if (unstable == null) { // OLD CONFIG
+           unstable = DEFAULT_UNSTABLE;
+       }
+       if (unstable == UNSTABLE_BLANK) {
+           return null;
+       }
+       return unstable;
+   }
 
     /**
      * Set the unstable value.

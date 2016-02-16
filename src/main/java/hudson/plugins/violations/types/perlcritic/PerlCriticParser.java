@@ -49,7 +49,7 @@ public class PerlCriticParser implements ViolationsParser {
     }
 
     /** {@inheritDoc} */
-    public void parse( FullBuildModel model, File projectPath, String fileName, String[] sourcePaths) throws IOException {
+    public void parse( FullBuildModel model, File projectPath, String fileName, Integer threshold, String[] sourcePaths) throws IOException {
 
         BufferedReader reader = null;
 

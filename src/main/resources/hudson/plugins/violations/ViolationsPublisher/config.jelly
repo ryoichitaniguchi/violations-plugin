@@ -62,7 +62,11 @@
         <td width="8%" align="center" style="${td}">
           <img src="${customIcons}/yellow.gif" title="unstable" alt="unstable"/>
         </td>
-        <td width="76%" style="${td}">
+         <td width="10%"  style="${td}">
+             <st:nbsp/>
+             acceptable level
+        </td>
+        <td width="66%" style="${td}">
           <st:nbsp/>
           XML filename pattern
         </td> 
@@ -86,6 +90,14 @@
             <f:textbox name="${inst.name}.unstable"
                        value="${inst.unstable}"/>
           </td>
+          <td width="10%" style="${td}">
+              <j:if test="${inst.name == 'codenarc' }" >
+                  <f:textbox name="${inst.name}.threshold" value="${inst.threshold}" />
+              </j:if >
+              <j:if test="${inst.name != 'codenarc' }" >
+                  <f:textbox name="${inst.name}.threshold" value="${inst.threshold}" disabled="true"/>
+              </j:if >
+          </td>
           <j:choose>
             <j:set var="typeDescriptor"
                    value="${config.typeDescriptorMap.get(inst.name)}"/>
@@ -93,7 +105,7 @@
                    value="${typeDescriptor.mavenTargets}"/>
             <j:when test="${descriptor.freeStyle}">
               <!-- NORMAL XML FILE PATTERN -->
-              <td width="76%" style="${td}">
+              <td width="66%" style="${td}">
                 <f:textbox 
                   width="100%"
                   name="${inst.name}.pattern"

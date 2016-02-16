@@ -16,11 +16,13 @@ public class FullFileModel extends AbstractFileModel {
      */
     @Override
     public void addViolation(Violation violation) {
-        TreeSet<Violation> set = getTypeMap().get(violation.getType());
-        if (set == null) {
-            set = new TreeSet<Violation>();
-            getTypeMap().put(violation.getType(), set);
+        if(violation != null) {
+            TreeSet<Violation> set = getTypeMap().get(violation.getType());
+            if (set == null) {
+                set = new TreeSet<Violation>();
+                getTypeMap().put(violation.getType(), set);
+            }
+            set.add(violation);
         }
-        set.add(violation);
     }
 }

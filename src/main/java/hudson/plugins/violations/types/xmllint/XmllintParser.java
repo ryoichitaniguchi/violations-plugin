@@ -37,7 +37,7 @@ public class XmllintParser implements ViolationsParser {
 
     /** {@inheritDoc} */
     public void parse(FullBuildModel model, File projectPath, String fileName,
-            String[] sourcePaths) throws IOException {
+            Integer threshold, String[] sourcePaths) throws IOException {
 
         BufferedReader reader = null;
 

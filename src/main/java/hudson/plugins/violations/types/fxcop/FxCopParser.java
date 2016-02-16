@@ -34,7 +34,7 @@ public class FxCopParser implements ViolationsParser {
     private transient File projectPath;
     private transient FxCopRuleSet ruleSet = new FxCopRuleSet();
 
-    public void parse(FullBuildModel model, File projectPath, String fileName, String[] sourcePaths) throws IOException {
+    public void parse(FullBuildModel model, File projectPath, String fileName, Integer threshold, String[] sourcePaths) throws IOException {
         this.projectPath = projectPath;
         this.model = model;
         

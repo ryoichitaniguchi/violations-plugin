@@ -121,25 +121,30 @@ public class CodenarcParser extends AbstractTypeParser {
         setSeverity(ret, getString("priority"));
         getParser().next();
 
-        // get the contents of the embedded SourceLine or Message element
-        try {
-            expectNextTag("SourceLine");
-            getNextText("Missing SourceLine"); // ignored
-            // no message --- use the rule name as the default, which is the
-            // most
-            // descriptive
-            ret.setMessage(ret.getSource());
-        } catch (IOException ioe) {
-            expectNextTag("Message");
-            ret.setMessage(getNextText("Missing Message"));
-        }
-        // TODO: the following depends upon a patch to CodeNarc 0.9 - so should
-        // be
-        // exception tolerant
-        // get the contents of the embedded Description element
-        // expectNextTag("Description");
-        // ret.setPopupMessage(getNextText("Missing Description"));
+        if ( getSeverityThreshold() != null &&
+             Severity.getSeverityLevel(SEVERITIES.get(getSeverityThreshold().toString())) < ret.getSeverityLevel() ){
+            ret = null;
+        }else {
 
+            // get the contents of the embedded SourceLine or Message element
+            try {
+                expectNextTag("SourceLine");
+                getNextText("Missing SourceLine"); // ignored
+                // no message --- use the rule name as the default, which is the
+                // most
+                // descriptive
+                ret.setMessage(ret.getSource());
+            } catch (IOException ioe) {
+                expectNextTag("Message");
+                ret.setMessage(getNextText("Missing Message"));
+            }
+            // TODO: the following depends upon a patch to CodeNarc 0.9 - so should
+            // be
+            // exception tolerant
+            // get the contents of the embedded Description element
+            // expectNextTag("Description");
+            // ret.setPopupMessage(getNextText("Missing Description"));
+        }
         getParser().next();
         endElement();
         return ret;
@@ -152,4 +157,5 @@ public class CodenarcParser extends AbstractTypeParser {
         v.setSeverity(SEVERITIES.get(severity));
         v.setSeverityLevel(Severity.getSeverityLevel(v.getSeverity()));
     }
+
 }
